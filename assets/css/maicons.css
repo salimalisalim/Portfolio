@@ -1,13 +1,14 @@
 @font-face {
   font-family: 'maicons';
-  src:  url('../fonts/maicons.eot?c9nlkl');
-  src:  url('../fonts/maicons.eot?c9nlkl#iefix') format('embedded-opentype'),
-    url('../fonts/maicons.ttf?c9nlkl') format('truetype'),
-    url('../fonts/maicons.woff?c9nlkl') format('woff'),
-    url('../fonts/maicons.svg?c9nlkl#maicons') format('svg');
+  src: local('maicons Regular'), local('maicons-Regular'),   url('../fonts/maicons.eot?c9nlkl');
+  src: local('maicons Regular'), local('maicons-Regular'),  url('../fonts/maicons.eot?c9nlkl#iefix') format('embedded-opentype'),
+  local('maicons Regular'), local('maicons-Regular'), url('../fonts/maicons.ttf?c9nlkl') format('truetype'),
+  local('maicons Regular'), local('maicons-Regular'), url('../fonts/maicons.woff?c9nlkl') format('woff'),
+  local('maicons Regular'), local('maicons-Regular'), url('../fonts/maicons.svg?c9nlkl#maicons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
+  font-display: swap;
 }
 
 [class^="mai-"], [class*=" mai-"] {
