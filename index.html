@@ -438,7 +438,7 @@ I have more than 10 years experiance in web technologies. I'm sure the aquired k
                 <span class="error_form" id="email_error_message"></span>
               </div>
               <div class="col-6 mt-3 wow fadeInUp">
-                <input class="form-control" type="tel" id="Phone" autocomplete="off" maxlength="10" onkeyup="phonevalidate();" name="Phone" placeholder="Phone"  >
+                <input class="form-control" type="text" id="Phone" autocomplete="off" maxlength="10" onkeyup="phonevalidate();" name="Phone" placeholder="Phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
                 <span class="error_form" id="phone_error_message"></span>
               </div>
               <div class="col-12 wow fadeInUp">
@@ -577,15 +577,15 @@ I have more than 10 years experiance in web technologies. I'm sure the aquired k
       $("#name_error_message").hide();
       $("#Name").css("border-bottom","2px solid #34F458");
       return true;
-    } else{
+    } 
+    else{
       $("#name_error_message").html("Please Enter Only Characters");
       $("#name_error_message").show();
       $("#Name").css("border-bottom","2px solid #F90A0A");
       return false;
     }
-
-
   }
+
   function emailvalidate(){
 
   var email = $("#Email").val();
@@ -611,25 +611,26 @@ I have more than 10 years experiance in web technologies. I'm sure the aquired k
 
 function phonevalidate(){
 
-var phone = $("#Phone").val();
-var pattern_phone =  /^([0-9]{10})+$/;
- // console.log(phone.match(pattern_phone));
-if(phone =="" || phone == null){
-  $("#phone_error_message").html("Enter Phone Number");
-  $("#phone_error_message").show();
-  $("#Phone").css("border-bottom","2px solid #F90A0A");
-  return false;
-} 
-else if (phone.match(pattern_phone) && phone.length==10){
-  $("#phone_error_message").hide();
-  $("#Phone").css("border-bottom","2px solid #34F458");
-  return true;
-} 
-else {
-  $("#phone_error_message").html("Enter a Valid Number");
-  $("#phone_error_message").show();
-  $("#Phone").css("border-bottom","2px solid #F90A0A");
-  return false;
+  var phone = $("#Phone").val();
+    var pattern_phone =  /^([0-9]{10})+$/;
+
+   // alert(phone.match(pattern_phone) );
+    if(phone =="" || phone == null){
+      $("#phone_error_message").html("Enter Phone Number");
+      $("#phone_error_message").show();
+      $("#Phone").css("border-bottom","2px solid #F90A0A");
+      return false;
+    } 
+    else if (phone.match(pattern_phone)){
+      $("#phone_error_message").hide();
+      $("#Phone").css("border-bottom","2px solid #34F458");
+      return true;
+    }
+    else{
+      $("#phone_error_message").html("Enter Valid Phone Number");
+      $("#phone_error_message").show();
+      $("#Phone").css("border-bottom","2px solid #F90A0A");
+      return false;
 } 
 }
  
@@ -667,7 +668,8 @@ else {
   $("#Message").css("border-bottom","2px solid #34F458");
   return true;
 }
-} 
+}
+
   function validateform(){
 
     if(namevalidate() == true && emailvalidate() == true && phonevalidate() == true && subjectvalidate() == true && messagevalidate() == true) {
