@@ -101,9 +101,11 @@
             I am a creative and innovative full stack developer, who takes the technology as a passion. I am very expert in
 doing professional and clean applications and also well versed in the latest technologies to cope up with latest trends in technology.
 I have more than 10 years experiance in web technologies. I'm sure the aquired knowledge during this period will help me to offer you the best service and result.
-          </p>
-          <p class="text-muted">
-            When I was a student I dreamed to work in an IT firm , those were the days computer was getting popular amoung us. I was so curious when I browse internet and I was thinking how it's backend process will be, how the data will deliver to me from another part of the world etc. So when I completed +2, I decided to work as web designer, so I did a diploma in multimedia, after that I joined in a company as a web designer, from there I tried to understand from the developers how the web is working, and it's process. They were kind enough to explain me its details and process.
+<p class="text-muted">
+  When I was a student I dreamed to work in an IT firm , those were the days computer was getting popular amoung us. I was so curious when I browse internet and I was thinking how it's backend process will be, how the data will deliver to me from another part of the world etc. So when I completed +2, I decided to work as web designer, so I did a diploma in multimedia, after that I joined in a company as a web designer, from there I tried to understand from the developers how the web is working, and it's process. They were kind enough to explain me its details and process.
+
+
+</p>
           </p>
           <ul class="theme-list">
             <li><b>From:</b> Malappuram, Kerala, India</li>
@@ -425,29 +427,29 @@ I have more than 10 years experiance in web technologies. I'm sure the aquired k
           </div>
         </div>
         <div class="col-lg-5">
-          <form id="contact-form" action=""  class="vg-contact-form needs-validation">
+          <form id="contact-form" name="contact-form"  onclick="validateform();" class="vg-contact-form needs-validation">
             <div class="form-row">
               <div class="col-12 mt-3 wow fadeInUp">
-                <input class="form-control" type="text" autocomplete="off" id="Name" name="Name" placeholder="Your Name" required="">            
-               
+                <input class="form-control" type="text" autocomplete="off" onkeyup="namevalidate();" id="Name" name="Name" placeholder="Your Name" >            
+                <span class="error_form" id="name_error_message"></span>
               </div>
               <div class="col-6 mt-3 wow fadeInUp form-group">
-                <input class="form-control" type="email" id="Email" autocomplete="off" name="Email" placeholder="Email Address" required="" >
-
+                <input class="form-control" type="email" id="Email" autocomplete="off" onkeyup="emailvalidate();" name="Email" placeholder="Email Address" >
+                <span class="error_form" id="email_error_message"></span>
               </div>
               <div class="col-6 mt-3 wow fadeInUp">
-                <input class="form-control" type="tel" id="Phone" autocomplete="off" name="Phone" placeholder="Phone" pattern="[0-9]{10}" required="">
-
+                <input class="form-control" type="tel" id="Phone" autocomplete="off" maxlength="10" onkeyup="phonevalidate();" name="Phone" placeholder="Phone"  >
+                <span class="error_form" id="phone_error_message"></span>
               </div>
               <div class="col-12 wow fadeInUp">
-                <input class="form-control" type="text" id="Subject" autocomplete="off" name="Subject" placeholder="Subject" required="">
-
+                <input class="form-control" type="text" id="Subject" onkeyup="subjectvalidate();" autocomplete="off" name="Subject" placeholder="Subject" >
+                <span class="error_form" id="subject_error_message"></span>
               </div>
               <div class="col-12 mt-3 wow fadeInUp">
-                <textarea class="form-control" name="Message" autocomplete="off" id="Message" rows="6" placeholder="Enter message here.." required=""></textarea>
-                
+                <textarea class="form-control" name="Message" autocomplete="off" onkeyup="messagevalidate();" id="Message" rows="6" placeholder="Enter message here.." ></textarea>
+                <span class="error_form" id="message_error_message"></span>
               </div>
-              <button class="btn btn-theme mt-3 wow fadeInUp ml-1" type="submit">Send Message</button>
+              <button class="btn btn-theme mt-3 wow fadeInUp ml-1" type="button">Send Message</button>
             </div>
           </form>
         </div>
@@ -484,7 +486,7 @@ I have more than 10 years experiance in web technologies. I'm sure the aquired k
             <p>Contact me</p>
             <hr class="divider">
             <ul class="list-unstyled">
-              <li><a href="mailto:salimalisalim@gmail.com" target="_blank">salimalisalim@gmail.com</a></li>
+              <li><a href="mailto:salimalisalim@gmail.com" target="_blank">salimalisalim@gmail.com</a> </li>
               <li>+91 8086894942</li>
               
             </ul>
@@ -551,16 +553,135 @@ I have more than 10 years experiance in web technologies. I'm sure the aquired k
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script>
 
-  <script>
-    $("#contact-form").submit((e)=>{
-            e.preventDefault()
-            $.ajax({
+<script>
+
+  $("#name_error_message").hide();
+  $("#email_error_message").hide();
+  $("#phone_error_message").hide();
+  $("#subject_error_message").hide();
+  $("#message_error_message").hide();
+
+
+  function namevalidate(){
+
+    var name = $("#Name").val();
+    var pattern_name =  /^[a-zA-Z]+$/ ;
+
+    if(name =="" || name == null){
+      $("#name_error_message").html("Please Enter Name");
+      $("#name_error_message").show();
+      $("#Name").css("border-bottom","2px solid #F90A0A");
+      return false;
+    } 
+    else if (name.match(pattern_name)){
+      $("#name_error_message").hide();
+      $("#Name").css("border-bottom","2px solid #34F458");
+      return true;
+    } else{
+      $("#name_error_message").html("Please Enter Only Characters");
+      $("#name_error_message").show();
+      $("#Name").css("border-bottom","2px solid #F90A0A");
+      return false;
+    }
+
+
+  }
+  function emailvalidate(){
+
+  var email = $("#Email").val();
+  var pattern_email =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/ ;
+
+  if(email =="" || email == null){
+    $("#email_error_message").html("Please Enter Email");
+    $("#email_error_message").show();
+    $("#Email").css("border-bottom","2px solid #F90A0A");
+    return false;
+  } 
+  else if (email.match(pattern_email)){
+    $("#email_error_message").hide();
+    $("#Email").css("border-bottom","2px solid #34F458");
+    return true;
+  } else{
+    $("#email_error_message").html("Enter a Valid Email");
+    $("#email_error_message").show();
+    $("#Email").css("border-bottom","2px solid #F90A0A");
+    return false;
+  }
+  }  
+
+function phonevalidate(){
+
+var phone = $("#Phone").val();
+var pattern_phone =  /^([0-9]{10})+$/;
+ // console.log(phone.match(pattern_phone));
+if(phone =="" || phone == null){
+  $("#phone_error_message").html("Enter Phone Number");
+  $("#phone_error_message").show();
+  $("#Phone").css("border-bottom","2px solid #F90A0A");
+  return false;
+} 
+else if (phone.match(pattern_phone) && phone.length==10){
+  $("#phone_error_message").hide();
+  $("#Phone").css("border-bottom","2px solid #34F458");
+  return true;
+} 
+else {
+  $("#phone_error_message").html("Enter a Valid Number");
+  $("#phone_error_message").show();
+  $("#Phone").css("border-bottom","2px solid #F90A0A");
+  return false;
+} 
+}
+ 
+function subjectvalidate(){
+
+var subject = $("#Subject").val();
+ //var pattern_subject =  /^([0-9]{10})*$/ ;
+// console.log(phone.match(pattern_phone));
+if(subject =="" || subject == null){
+  $("#subject_error_message").html("Please Enter Subject");
+  $("#subject_error_message").show();
+  $("#Subject").css("border-bottom","2px solid #F90A0A");
+  return false;
+} 
+else {
+  $("#subject_error_message").hide();
+  $("#Subject").css("border-bottom","2px solid #34F458");
+  return true;
+}
+} 
+
+function messagevalidate(){
+
+var message = $("#Message").val();
+ //var pattern_subject =  /^([0-9]{10})*$/ ;
+// console.log(phone.match(pattern_phone));
+if(message =="" || message == null){
+  $("#message_error_message").html("Please Enter Message");
+  $("#message_error_message").show();
+  $("#Message").css("border-bottom","2px solid #F90A0A");
+  return false;
+} 
+else {
+  $("#message_error_message").hide();
+  $("#Message").css("border-bottom","2px solid #34F458");
+  return true;
+}
+} 
+  function validateform(){
+
+    if(namevalidate() == true && emailvalidate() == true && phonevalidate() == true && subjectvalidate() == true && messagevalidate() == true) {
+      $.ajax({
                 url:"https://script.google.com/macros/s/AKfycbxr4Gr57OxJNCDtJjyBBdAAx6GHHn3Bw6WmhI82efn8_EU1OGjUZiB2pwJrBgbugAvg4g/exec",
                 data:$("#contact-form").serialize(),
                 method:"post",
                 success:function (response){
                    // alert("Form submitted successfully")
                    $("#SuccessModal").modal('show');
+                   setTimeout(function () {
+                    window.location.reload();
+                }, 3000);
+                    
                     // window.location.reload()
                     //window.location.href="https://google.com"
                 },
@@ -569,12 +690,13 @@ I have more than 10 years experiance in web technologies. I'm sure the aquired k
     
                 }
             })
-        })
-
-    function reload(){
-    window.location.reload();
+    } else{
+ //     alert("Please fill the fields");
+    }
+    
   }
-  </script>
+
+</script>
 
 
 </body>
