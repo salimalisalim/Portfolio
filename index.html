@@ -430,7 +430,7 @@ I have more than 10 years experiance in web technologies. I'm sure the aquired k
           <form id="contact-form" name="contact-form"  onclick="validateform();" class="vg-contact-form needs-validation">
             <div class="form-row">
               <div class="col-12 mt-3 wow fadeInUp">
-                <input class="form-control" type="text" autocomplete="off" onkeyup="namevalidate();" id="Name" name="Name" placeholder="Your Name" >            
+                <input class="form-control" type="text" autocomplete="off" onkeyup="namevalidate();" id="Name" name="Name" placeholder="Your Name" oninput="this.value = this.value.replace(/[^A-Za-z.]/g, '').replace(/(\..*)\./g, '$1');">            
                 <span class="error_form" id="name_error_message"></span>
               </div>
               <div class="col-6 mt-3 wow fadeInUp form-group">
